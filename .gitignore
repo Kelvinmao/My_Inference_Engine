@@ -1,0 +1,11 @@
+build/
+factory/
+deps/
+hf/
+qwenc/
+*.tiktoken
+model.safetensors
+*.safetensors
+*.gguf
+Qwen3-0.6B
+banner.txt
