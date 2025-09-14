@@ -7,21 +7,54 @@
 #include <iostream>
 
 #include "config.h"
-// ========================================
-// utils
-// ========================================
+#include "utils.h"
 
-void
-print_banner() {
-    printf("\n" COLOR_ORANGE R"(
-   ____ _       _________   _______ ____  ____  __ __ __  ___
-  / __ \ |     / / ____/ | / / ___// __ \/ __ \/ //_//  |/  /
- / / / / | /| / / __/ /  |/ / __ \/ / / / / / / ,<  / /|_/ / 
-/ /_/ /| |/ |/ / /___/ /|  / /_/ / /_/ / /_/ / /| |/ /  / /  
-\___\_\|__/|__/_____/_/ |_/\____/\____/\____/_/ |_/_/  /_/   
-                                                             
-                                               
-    )" COLOR_RESET);
+// ==========================================
+// chat loop
+// ==========================================
+void read_stdin(
+    const char* guide,
+    char* buffer,
+    size_t bufsize
+) {
+    // read a line from stdin, up to but not including \n
+    printf("%s", guide);
+    if (fgets(buffer, bufsize, stdin) != NULL) {
+        size_t len = strlen(buffer);
+        if (len > 0 && buffer[len - 1] == '\n') {
+            // strip newline
+            buffer[len - 1] = '\0';
+        }
+    }
+}
+
+void chat(
+    char* cli_user_prompt,
+    char* system_prompt,
+    int enable_thinking
+) {
+    char user_prompt[PROMPT_BUFFER_SIZE];
+    int user_turn = 1;
+    int pos = 0;
+
+    while (1) {
+        if (pos >= SEQ_LEN) {
+            printf("\n%s(context window full, clearing)%s\n", COLOR_YELLOW, COLOR_RESET);
+            user_turn = 1;
+            pos = 0;
+        }
+
+        if (user_turn) {
+            if (cli_user_prompt != NULL) {
+                if (pos > 0)    break;
+                strcpy(user_prompt, cli_user_prompt);
+            } else {
+                read_stdin("\n>> ", user_prompt, sizeof(user_prompt));
+                // printf("User input: %s\n", user_prompt);
+                if (!user_prompt[0])    break;
+            }
+        }
+    }
 }
 
 long
