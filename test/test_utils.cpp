@@ -30,4 +30,3 @@ TEST_CASE("Construct model path", "[model_path]") {
         bool result = (strcmp(out_path, expected) == 0);
         REQUIRE(result == true);
     }
-}
