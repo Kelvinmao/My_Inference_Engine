@@ -54,18 +54,4 @@ target_include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/test
 )
 
-set_target_properties(tests PROPERTIES
-    CXX_STANDARD 17
-    CXX_STANDARD_REQUIRED YES
-)
-
-set_target_properties(Catch2 PROPERTIES
-    CXX_STANDARD 17
-    CXX_STANDARD_REQUIRED YES
-)
-set_target_properties(Catch2WithMain PROPERTIES
-    CXX_STANDARD 17
-    CXX_STANDARD_REQUIRED YES
-)
-
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
