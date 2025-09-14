@@ -44,6 +44,8 @@ set_target_properties(qwen600 PROPERTIES COMPILE_FLAGS "-O3")
 # ============================
 add_executable(
     tests
+    utils.cpp
+    tokenizer.cpp
     test/test_tokenizer.cpp
     test/test_utils.cpp
 )
