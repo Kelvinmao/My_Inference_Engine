@@ -24,7 +24,7 @@ TEST_CASE("load_single_template loads file test", "[tokenizer]") {
 
 TEST_CASE("build_tokenizer constrct a tokenizer test", "[tokenizer]") {
     // build_tokenizer(Tokenizer* t, const char* dir_path, int enable_thinking)
-    const char* dir_path = "/path/to/model";
+    const char* dir_path = "/workspace/Qwen-600-KM/Qwen3-0.6B";
     auto t =  std::make_unique<Tokenizer>();
     
     SECTION ("Test tokenizer construction") {
