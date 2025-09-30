@@ -25,3 +25,6 @@ load_single_template(char* buffer, size_t buffer_size, const char* dir_path, con
 
 void 
 build_tokenizer(Tokenizer* t, const char* dir_path, int enable_thinking);
+
+void
+encode(Tokenizer* t, char* text, int* tokens, int* n_tokens);
