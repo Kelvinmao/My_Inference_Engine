@@ -26,11 +26,16 @@ message(STATUS "Project: ${PROJECT_NAME}")
 # ============================
 # Main program
 # ============================
+include_directories(
+    /usr/local/cuda/include
+)
+
 add_executable(
     qwen600
     main.cu
     utils.cpp
     tokenizer.cpp
+    static_loader.cpp
 )
 
 target_compile_options(qwen600 PRIVATE
@@ -46,8 +51,10 @@ add_executable(
     tests
     utils.cpp
     tokenizer.cpp
+    static_loader.cpp
     test/test_tokenizer.cpp
     test/test_utils.cpp
+    test/test_static_loader.cpp
 )
 
 target_include_directories(
@@ -56,4 +63,8 @@ target_include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/test
 )
 
-target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
+find_package(CUDAToolkit REQUIRED)
+target_link_libraries(tests PRIVATE
+    Catch2::Catch2WithMain
+    CUDA::cudart
+)
