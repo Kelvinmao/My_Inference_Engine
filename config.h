@@ -21,3 +21,5 @@
 constexpr int SEQ_LEN = 8192;
 constexpr int PROMPT_BUFFER_SIZE = 32768;
 constexpr int VOCAB_SIZE = 151936;
+
+constexpr int N_LAYERS = 28;

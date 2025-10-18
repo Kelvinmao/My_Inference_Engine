@@ -26,7 +26,7 @@ TEST_CASE("Construct model path", "[model_path]") {
         const char filename[1024] = "model.tensor";
         construct_path(out_path, out_size, dir, filename);
         char expected[1024] = "/path/to/model/model.tensor";
-        printf("%s", out_path);
+        printf("%s\n", out_path);
         bool result = (strcmp(out_path, expected) == 0);
         REQUIRE(result == true);
     }
